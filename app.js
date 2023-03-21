@@ -14,6 +14,7 @@ app.get('/.well-known/com.apple.remotemanagement', (req, res) => {
     const ip = req.clientIp;
     fs.readFile('data.json', 'utf-8', (err, data) => {
         if (err) {
+            // TODO present Mosyle as default MDM for all users.
             return res.status(500).json({ error: 'Error reading data.json' });
         }
 
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
+    // TODO Re-do /submit redirect on homepage.
     const userIp = req.clientIp;
     const selectedUrl = req.body.customUrl || req.body.mdmUrl;
     const updateDataJson = (data) => {

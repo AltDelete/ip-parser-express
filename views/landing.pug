@@ -1,0 +1,17 @@
+extends layout
+block content
+
+    section(class="container mx-auto px-6 py-16 mt-16")
+        h1(class="text-4xl md:text-5xl font-bold mb-6") Welcome to Our Corporate Landing Page
+        p(class="text-xl md:text-2xl mb-8") We provide exceptional services for our clients.
+        a(href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded") Learn More
+
+    section(class="container mx-auto px-6 py-16")
+        h2(class="text-3xl md:text-4xl font-bold mb-6") Our Services
+        div(class="grid grid-cols-1 md:grid-cols-3 gap-8")
+            each val, index in [1, 2, 3]
+                div(class="text-center")
+                    div(class="w-20 h-20 mx-auto mb-4 bg-blue-500 rounded-full flex items-center justify-center")
+                        span(class="text-6xl text-white") #{index}
+                    h3(class="text-xl font-bold mb-4") Service #{index}
+                    p(class="text-base") Lorem ipsum dolor sit amet, consectetur adipiscing elit.

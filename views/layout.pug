@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title PretendCo
+        link(rel="stylesheet" href="/css/styles.css")
+        link(href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css", rel="stylesheet")
+    body(class="bg-gray-900 text-white font-sans min-h-screen")
+        header(class="w-full z-10")
+            nav(class="container mx-auto px-6 py-4 flex justify-between items-center")
+                a(href="#" class="text-2xl font-bold") PretendCo
+                //ul(id="menu" class="hidden md:flex md:space-x-8 space-y-4 md:space-y-0")
+                //    li
+                //        a(href="#" class="text-gray-300 hover:text-white") Home
+                //    li
+                //        a(href="#" class="text-gray-300 hover:text-white") About
+                //    li
+                //        a(href="#" class="text-gray-300 hover:text-white") Services
+                //    li
+                //        a(href="#" class="text-gray-300 hover:text-white") Contact
+                //button(id="menuToggle" type="button" class="md:hidden block text-gray-300 hover:text-white focus:outline-none focus:text-white")
+                //    span(class="material-icons") menu
+        // Use a block for the content that will be replaced by other pages
+    main
+        block content
+
+        // (footer code here)
+        footer(class="bg-gray-800 py-6 mt-16")
+            div(class="container mx-auto px-6 text-center")
+                div(class="mb-6") PretendCo &copy; 2023. All rights reserved.
+                //div(class="flex justify-center space-x-4")
+                //    a(href="#" class="text-gray-300 hover:text-white") Social?
+    script.
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('block');
+        })

@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/landing', (req, res) => {
+    res.render('landing');
+})
+
+
 app.post('/submit', (req, res) => {
     // TODO Re-do /submit redirect on homepage.
     const userIp = req.clientIp;

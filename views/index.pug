@@ -1,29 +1,23 @@
-doctype html
-html(lang="en")
-html
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title User Enrollment MDM Selector
-        link(rel="stylesheet" href="/css/styles.css")
-        link(href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css", rel="stylesheet")
-    body(class="bg-gray-800 text-white font-sans min-h-screen")
-        div(class="flex flex-col items-center justify-center min-h-screen")
-            img(src="/images/logo.png", class="w-32 h-32 mb-8", alt="Logo")
-            form(method="post", action="/submit" class="w-full max-w-sm")
-                label(for="mdmUrl" class="my-10 block text-sm font-bold mb-2") Choose a DemoKit maintained MDM:
-                select(class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none" name="mdmUrl" id="mdmUrl")
-                    option(value="https://pretendco.jamfcloud.com/servicediscoveryenrollment/v1/userenroll") Jamf Pro
-                    option(value="https://biz-13303.mosyle.com/api/v2enrollment/enroll/byod") Mosyle
-                    option(value="https://ds800.airwatchportals.com/DeviceManagement/Enrollment/AccountDrivenUserEnroll") Workspace One
-                    option(value="https://manage.microsoft.com/EnrollmentServer/PostReportDeviceInfoForUEV2?aadTenantId=e305bbd7-de86-4235-999d-ad929af9ca0b&intuneAccountId=c7b15786-c15f-4477-8bd9-01a5eaafb676") Intune
-                label(for="customUrl", class="my-10 block text-sm font-bold mb-2") Or enter a custom MDM URL:
-                input(type="text", id="customUrl", name="customUrl", class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none")
-                button(type="submit", class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none") Submit
+extends layout.pug
+
+block content
+    // (about page content here)
+    div(class="flex flex-col items-center justify-center min-h-screen")
+        img(src="/images/logo.png", class="w-32 h-32 mb-8", alt="Logo")
+        form(method="post", action="/submit" class="w-full max-w-sm")
+            label(for="mdmUrl" class="my-10 block text-sm font-bold mb-2") Choose a DemoKit maintained MDM:
+            select(class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none" name="mdmUrl" id="mdmUrl")
+                option(value="https://pretendco.jamfcloud.com/servicediscoveryenrollment/v1/userenroll") Jamf Pro
+                option(value="https://biz-13303.mosyle.com/api/v2enrollment/enroll/byod") Mosyle
+                option(value="https://ds800.airwatchportals.com/DeviceManagement/Enrollment/AccountDrivenUserEnroll") Workspace One
+                //option(value="https://manage.microsoft.com/EnrollmentServer/PostReportDeviceInfoForUEV2?aadTenantId=e305bbd7-de86-4235-999d-ad929af9ca0b&intuneAccountId=c7b15786-c15f-4477-8bd9-01a5eaafb676") Intune
+            label(for="customUrl", class="my-10 block text-sm font-bold mb-2") Or enter a custom MDM URL:
+            input(type="text", id="customUrl", name="customUrl", class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none")
+            button(type="submit", class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none") Submit
+            br
+            br
+        if url
+            div(class="mx-10 flex flex-col grow-0 items-center justify-center bg-green-700 border border-green-500 text-green-100 px-4 py-3 rounded relative", role="alert")
+                strong(class="font-semibold") You successfully changed your endpoint to:
                 br
-                br
-            if url
-                div(class="mx-10 flex flex-col grow-0 items-center justify-center bg-green-700 border border-green-500 text-green-100 px-4 py-3 rounded relative", role="alert")
-                    strong(class="font-semibold") You successfully changed your endpoint to:
-                    br
-                    p(class="justify-center px-5")= url
+                p(class="justify-center px-5")= url

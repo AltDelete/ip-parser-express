@@ -5,7 +5,19 @@ const requestIp = require('request-ip');
 const app = express();
 const port = 3000;
 
+const trustedHosts = ['www.pretendco.com', 'pretendco.com', 'localhost', 'localhost:3000'];
+
 app.set('view engine', 'pug');
+app.use((req, res, next) => {
+    const host = req.headers.host;
+
+    if (trustedHosts.includes(host)) {
+        next();  // The host is good, so proceed to the next middleware
+    } else {
+        // If the host isn't trusted, send an error or just ignore the request
+        res.status(400).send('Invalid Host');
+    }
+});
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(requestIp.mw());

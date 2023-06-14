@@ -5,6 +5,11 @@ block content
     div(class="flex flex-col items-center justify-center min-h-screen")
         img(src="/images/logo.png", class="w-32 h-32 mb-8", alt="Logo")
         form(method="post", action="/submit" class="w-full max-w-sm")
+            label(for="enrollmentType", class="my-10 block text-sm font-bold mb-2") Choose Enrollment Type:
+            select(class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none" name="enrollmentType", id="enrollmentType")
+                option(value="mdm-byod") User Enrollment
+                option(value="mdm-adde") Device Enrollment
+
             label(for="mdmUrl" class="my-10 block text-sm font-bold mb-2") Choose a DemoKit maintained MDM:
             select(class="block w-full bg-gray-700 border border-gray-600 rounded py-2 px-3 mb-3 text-white focus:outline-none" name="mdmUrl" id="mdmUrl")
                 option(value="https://pretendco.jamfcloud.com/servicediscoveryenrollment/v1/userenroll") Jamf Pro
@@ -16,8 +21,11 @@ block content
             button(type="submit", class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none") Submit
             br
             br
-        if url
+        if url && version
             div(class="mx-10 flex flex-col grow-0 items-center justify-center bg-green-700 border border-green-500 text-green-100 px-4 py-3 rounded relative", role="alert")
-                strong(class="font-semibold") You successfully changed your endpoint to:
+                strong(class="font-semibold") You successfully changed your enrollment type to:
                 br
+                p(class="justify-center px-5")= version
+                br
+                strong(class="font-semibold") and MDM endpoint to:
                 p(class="justify-center px-5")= url

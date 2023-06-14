@@ -1,1 +1,1 @@
-{"10.1.30.237":{"url":"macrumors.com"},"::1":{"url":"https://manage.microsoft.com/enroll"}}
+{"10.1.30.237":{"url":"macrumors.com"},"::1":{"url":"https://pretendco.jamfcloud.com/servicediscoveryenrollment/v1/userenroll","Version":"mdm-byod"}}

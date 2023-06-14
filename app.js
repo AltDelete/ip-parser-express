@@ -21,7 +21,7 @@ app.get('/.well-known/com.apple.remotemanagement', (req, res) => {
         const jsonData = JSON.parse(data);
 
         if (jsonData[ip]) {
-            res.json({ Servers: [{ Version: 'mdm-byod', BaseURL: jsonData[ip].url}] });
+            res.json({ Servers: [{ Version: jsonData[ip].Version, BaseURL: jsonData[ip].url}] });
         } else {
             res.status(404).json({ error: 'IP not found in data.json' });
         }
@@ -42,8 +42,9 @@ app.post('/submit', (req, res) => {
     // TODO Re-do /submit redirect on homepage.
     const userIp = req.clientIp;
     const selectedUrl = req.body.customUrl || req.body.mdmUrl;
+    const selectedVersion = req.body.enrollmentType;
     const updateDataJson = (data) => {
-        data[userIp] = { url: selectedUrl };
+        data[userIp] = { url: selectedUrl, Version: selectedVersion };
         fs.writeFile('data.json', JSON.stringify(data), (err) => {
             if (err) {
                 console.error(err);
@@ -52,7 +53,7 @@ app.post('/submit', (req, res) => {
             }
             // res.send('URL selection saved.');
             // res.status(200).json({ message: 'Data saved successfully!' });
-            res.status(200).render('index', { message: 'Data saved successfully!', url: selectedUrl });
+            res.status(200).render('index', { message: 'Data saved successfully!', url: selectedUrl, version: selectedVersion === 'mdm-byod' ? 'User Enrollment' : 'Device Enrollment' });
         });
     };
 
